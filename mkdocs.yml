@@ -1,0 +1,70 @@
+site_name: Cybersecurity PhD Research Lab – Policy-as-Code & Guardrails
+site_url: https://lglenz.github.io/eliaslenz-cybersecurity-phd-research-lab-mkdocs/
+repo_url: https://github.com/LGLenz/eliaslenz-cybersecurity-phd-research-lab-mkdocs
+repo_name: LGLenz/eliaslenz-cybersecurity-phd-research-lab-mkdocs
+edit_uri: edit/main/docs/
+theme:
+  name: material
+  language: en
+  features:
+  - navigation.tabs
+  - navigation.sections
+  - navigation.top
+  - toc.integrate
+  - content.code.copy
+  - content.tabs.link
+  - search.highlight
+  - search.suggest
+  palette:
+  - scheme: slate
+    primary: indigo
+    accent: cyan
+plugins:
+- search
+- bibtex:
+    bib_file: docs/references/library.bib
+- git-revision-date-localized
+- minify:
+    minify_html: true
+nav:
+- Home: index.md
+- About: about.md
+- Contact: contact.md
+- Changelog: changelog.md
+- License: license.md
+- Security: security.md
+- Research:
+  - Questions: research/questions.md
+  - Framework: research/framework.md
+  - Roadmap: research/roadmap.md
+- Literature:
+  - Overview: literature/index.md
+  - Comparative synthesis: literature/comparative.md
+  - Governance constraints (DE/UK vs KE/MY): literature/governance-comparison.md
+  - Tooling landscape (RQ1.1–RQ1.4): literature/tooling-landscape.md
+  - Evidence automation & auditability: literature/evidence-automation.md
+  - Kenya/Malaysia evidence gap: literature/kenya-malaysia-evidence-gap.md
+  - Kenya/Malaysia capture template: literature/kenya-malaysia-capture-template.md
+- Methodology:
+  - Overview: methodology/index.md
+- Artefacts:
+  - Prototypes & tooling: artefacts/prototypes.md
+  - Papers and research artefacts: papers/index.md
+- Practice:
+  - Consulting bridge: practice/consulting-bridge.md
+- Uploads:
+  - Project artefacts: uploads/index.md
+- External:
+  - Preprint 1 – CPS cybersecurity (external): https://elb-consulting-tech.github.io/eliaslenz-secure-consulting/papers/preprint-1.html
+  - Freelance consulting site: https://elb-consulting-tech.github.io/eliaslenz-secure-consulting/
+markdown_extensions:
+- admonition
+- footnotes
+- toc:
+    permalink: true
+- tables
+- pymdownx.details
+- pymdownx.superfences
+- pymdownx.highlight
+- pymdownx.inlinehilite
+- pymdownx.emoji

@@ -1,0 +1,209 @@
+TY  - GEN
+ID  - ISO2022ISOIEC27001
+TI  - ISO/IEC 27001:2022 --- Information Security Management Systems (ISMS)
+AU  - ISO
+PY  - 2022
+PB  - ISO
+UR  - https://www.iso.org/standard/27001.html
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - ISO2025ISOIEC27018
+TI  - ISO/IEC 27018:2025 --- PII Protection in Public Cloud
+AU  - ISO
+PY  - 2025
+PB  - ISO
+UR  - https://www.iso.org/standard/27018.html
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - NIST2024NISTCybersecurityFra
+TI  - NIST Cybersecurity Framework 2.0
+AU  - NIST
+PY  - 2024
+PB  - NIST
+UR  - https://www.nist.gov/cyberframework
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - NCSC2023NCSCCloudSecurityPri
+TI  - NCSC Cloud Security Principles
+AU  - NCSC
+PY  - 2023
+PB  - NCSC
+UR  - https://www.ncsc.gov.uk/collection/cloud-security
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - BSI2024BSI
+TI  - BSI (2024) BSI Cloud Security Guidance (Germany)
+AU  - BSI
+PY  - 2024
+PB  - BSI Docs
+UR  - https://www.bsi.bund.de/EN/Topics/Cloud_Computing/cloud_computing_node.html
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - ENISA2024ENISA
+TI  - ENISA (2024) Sovereign Cloud Security Requirements
+AU  - ENISA
+PY  - 2024
+PB  - ENISA Docs
+UR  - https://www.enisa.europa.eu/publications/sovereign-cloud-security
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - European2023EuropeanCommission
+TI  - European Commission (2023) EUCS — EU Cloud Services Cybersecurity Certification Scheme (Draft)
+AU  - European Commission
+PY  - 2023
+PB  - EU Docs
+UR  - https://digital-strategy.ec.europa.eu/en/policies/eu-cloud-cybersecurity-certification-scheme
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - UK2023UKCabinetOffice
+TI  - UK Cabinet Office (2023) Government Security Policy Framework (SPF)
+AU  - UK Cabinet Office
+PY  - 2023
+PB  - UK Cabinet Office
+UR  - https://www.gov.uk/government/publications/government-security
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Bulmer2025EuropeanCloudComputi
+TI  - European Cloud Computing Policy: Failing in Europe to Succeed Elsewhere?
+AU  - Bulmer et al.
+PY  - 2025
+PB  - Journal of European Public Policy
+UR  - https://www.tandfonline.com/doi/full/10.1080/01402382.2025.2491962
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - I2021Thedosanddontsofinfr
+TI  - The do's and don'ts of infrastructure code: A systematic gray literature review
+AU  - I Kumara, M Garriga, AU Romeu, D Di Nucci
+PY  - 2021
+PB  - Information and Software Technology
+UR  - https://www.sciencedirect.com/science/article/pii/S0950584921000720
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Goncalves2025AssessingtheAdoption
+TI  - Assessing the Adoption of Security Policies by Developers in Terraform Infrastructure as Code
+AU  - Goncalves et al.
+PY  - 2025
+PB  - Empirical Software Engineering
+UR  - https://pmc.ncbi.nlm.nih.gov/articles/PMC11868142/
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - OPA2025OpenPolicyAgent
+TI  - Open Policy Agent (OPA) Documentation
+AU  - OPA Project
+PY  - 2025
+PB  - OPA Docs
+UR  - https://www.openpolicyagent.org/docs/latest/
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Kyverno2025KyvernoPolicyManagem
+TI  - Kyverno Policy Management
+AU  - Kyverno Project
+PY  - 2025
+PB  - Kyverno Docs
+UR  - https://kyverno.io/docs/
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Capital2025CloudCustodian
+TI  - Cloud Custodian
+AU  - Capital One
+PY  - 2025
+PB  - Governance-as-Code Docs
+UR  - https://cloudcustodian.io/
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - AWS2023AWS
+TI  - AWS (2023) Security Hub — Foundational Security Best Practices
+AU  - AWS
+PY  - 2023
+PB  - AWS Docs
+UR  - https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp.html
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Microsoft2023Microsoft
+TI  - Microsoft (2023) Azure Blueprints—Regulatory Compliance
+AU  - Microsoft Docs
+PY  - 2023
+PB  - Microsoft Docs
+UR  - https://learn.microsoft.com/en-us/azure/governance/blueprints/overview
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Google2023GoogleCloud
+TI  - Google Cloud (2023) Assured Workloads — Compliance Controls
+AU  - Google Cloud
+PY  - 2023
+PB  - Google Cloud Docs
+UR  - https://cloud.google.com/assured-workloads/
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Rahman2022RahmanWilliams
+TI  - Rahman & Williams (2022) --- Kubernetes Misconfigurations
+AU  - Rahman & Williams
+PY  - 2022
+PB  - Empirical Analysis
+UR  - https://scholar.google.com/citations?user=q2sPEkcAAAAJ
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Minna2025MinnaMassacciTuma
+TI  - Minna, Massacci & Tuma (2025) --- Helm Misconfigurations
+AU  - Minna, Massacci, Tuma
+PY  - 2025
+PB  - Empirical Study
+UR  - https://scholar.google.com/citations?user=xCwU0OsAAAAJ
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - IBM2021MultiCloudCompliance
+TI  - Multi-Cloud Compliance as Code Automation
+AU  - IBM Research Team
+PY  - 2021
+PB  - IBM Research
+UR  - https://research.ibm.com/projects/multi-cloud-compliance-as-code-automation
+N1  - Accessed: 13 February 2026
+ER  - 
+
+TY  - GEN
+ID  - Khan2024IdentifyingthePrimar
+TI  - Identifying the Primary Dimensions of DevSecOps: A Multi-vocal Study
+AU  - Khan et al.
+PY  - 2024
+PB  - Journal of Systems and Software
+UR  - https://www.sciencedirect.com/science/article/pii/S0164121224001080
+N1  - Accessed: 13 February 2026
+ER  - 

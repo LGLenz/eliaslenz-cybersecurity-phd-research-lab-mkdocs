@@ -1,0 +1,23 @@
+name: Literature note
+description: Add a paper/book/report to be reviewed and summarised
+title: "[Lit]: "
+labels: ["literature"]
+body:
+  - type: input
+    id: citation
+    attributes:
+      label: Citation / DOI / URL
+      description: Provide DOI or stable URL.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this relevant to the research questions?
+    validations:
+      required: true
+  - type: textarea
+    id: tags
+    attributes:
+      label: Suggested theme tags
+      description: e.g., governance, IAM, data protection, public sector, skills

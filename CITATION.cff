@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it."
+title: "Cybersecurity PhD Research Lab – Policy-as-Code & Guardrails"
+type: software
+authors:
+  - name: "Elias Lenz"
+repository-code: "https://github.com/LGLenz/eliaslenz-cybersecurity-phd-research-lab-mkdocs"
+url: "https://lglenz.github.io/eliaslenz-cybersecurity-phd-research-lab-mkdocs/"
+license: "CC-BY-4.0"
+date-released: "2026-02-13"

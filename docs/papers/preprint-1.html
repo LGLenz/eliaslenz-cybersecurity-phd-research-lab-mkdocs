@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Preprint 1 – Cybersecurity Threats, Vulnerabilities and Defence Mechanisms in Cyber-Physical Systems</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Working paper exploring cybersecurity threats, vulnerabilities and defence mechanisms for cyber-physical systems, including industrial control, SCADA and critical infrastructure." />
+</head>
+<body>
+  <main>
+    <article>
+      <h1>Cybersecurity Threats, Vulnerabilities and Defence Mechanisms across Industry 4.0, Cyber‑Physical Systems and SMEs</h1>
+  <p><em>Working draft for PhD literature repository (not directly tied to core thesis RQs). This document is being iteratively refined using peer‑reviewed and authoritative sources.</em></p>
+
+  <h2>Abstract</h2>
+  <p>
+    Rapid digitalisation has expanded the attack surface of organisations across sectors, especially in
+    Industry&nbsp;4.0 environments, cyber‑physical systems (CPS) and small and medium‑sized enterprises (SMEs).
+    This narrative review synthesises recent peer‑reviewed and authoritative literature on cyber threats,
+    vulnerabilities and defence mechanisms in these domains. Drawing on threat‑landscape reports such as the
+    ENISA Threat Landscape 2023 and empirical studies on SME security posture, it highlights how ransomware,
+    phishing, supply‑chain compromise and false‑data injection attacks increasingly target interconnected
+    industrial systems and resource‑constrained organisations.
+    The review distinguishes between structural and human‑centric vulnerabilities, emphasising misconfigurations,
+    legacy system integration, weak access control, inadequate monitoring and low security awareness as
+    cross‑cutting issues. It further compares model‑based detection techniques (e.g. Kalman‑filter‑based secure
+    state estimation in CPS) with data‑driven and hybrid approaches using machine learning and anomaly detection.
+    Finally, the paper identifies research gaps around cross‑domain datasets, explainable detection for safety‑
+    critical systems, SME‑appropriate controls and the integration of technical defences with governance and
+    human‑centric measures such as training and usable security. The findings motivate a multi‑layered research
+    agenda that links detection, resilience engineering and security culture.
+  </p>
+
+  <h3>Keywords</h3>
+  <p>
+    Cybersecurity; Industry&nbsp;4.0; cyber‑physical systems; small and medium‑sized enterprises; false data
+    injection attacks; intrusion detection; machine learning; human factors.
+  </p>
+
+  <h2>1. Introduction</h2>
+  <p>
+    Cybersecurity has become a critical concern for organisations of all sizes as digital technologies are
+    embedded into physical processes, supply chains and public services. Contemporary infrastructures increasingly
+    rely on interconnected sensors, cloud platforms and automation technologies to enable Industry&nbsp;4.0
+    production lines, smart grids, intelligent transport systems and digital service delivery. While these
+    developments offer substantial efficiency and innovation benefits, they also introduce new vulnerabilities and
+    expose organisations to sophisticated cyber threats that can disrupt operations, compromise safety and erode
+    public trust.
+  </p>
+  <p>
+    Evidence from recent threat‑landscape studies indicates a sustained rise in ransomware, phishing and
+    data‑exfiltration campaigns, alongside targeted attacks on operational technology and CPS in sectors such as
+    energy, manufacturing and health care. At the same time, SMEs remain disproportionately affected by
+    commodity attacks and social‑engineering campaigns due to limited resources, skills shortages and fragmented
+    governance structures. In parallel, advanced adversaries increasingly exploit the tight coupling of cyber and
+    physical components through false‑data injection, replay attacks and supply‑chain compromises aimed at
+    industrial control systems.
+  </p>
+  <p>
+    Against this background, understanding how threats, vulnerabilities and defence mechanisms differ – and
+    overlap – across Industry&nbsp;4.0 environments, CPS and SMEs is essential for designing effective mitigation
+    strategies. Rather than treating these domains in isolation, this review adopts a cross‑domain perspective
+    that emphasises common patterns in attacker behaviour, systemic weaknesses and defensive responses. The
+    objective is to provide a structured synthesis that can inform both future research and practice, including
+    the design of human‑centric, governance‑aware security architectures.
+  </p>
+
+  <h2>1.1 Scope and Contributions</h2>
+  <p>
+    This working paper focuses on three interrelated domains:
+  </p>
+  <ul>
+    <li>
+      <strong>Industry&nbsp;4.0</strong> – networked production systems, industrial Internet of Things (IIoT) devices,
+      manufacturing execution systems and related cloud/edge components.
+    </li>
+    <li>
+      <strong>Cyber‑physical systems (CPS)</strong> – safety‑critical systems that tightly couple computation,
+      communication and physical processes, such as smart grids, autonomous vehicles and industrial control
+      systems.
+    </li>
+    <li>
+      <strong>Small and medium‑sized enterprises (SMEs)</strong> – organisations with limited dedicated security
+      staff and budgets, often relying on third‑party platforms and managed services for IT and security.
+    </li>
+  </ul>
+  <p>
+    The paper has three main contributions. First, it consolidates recent evidence on the dominant threats and
+    exploited vulnerabilities across these domains, including both technical and human factors. Second, it
+    compares model‑based, data‑driven and hybrid defence mechanisms, with a particular focus on intrusion
+    detection and anomaly‑detection approaches applicable to Industry&nbsp;4.0 and CPS. Third, it identifies
+    cross‑cutting research gaps and practice‑oriented challenges, such as the scarcity of high‑quality
+    cross‑domain datasets, limited attention to SMEs in advanced detection research, and the need to integrate
+    technical safeguards with governance and user‑centric interventions such as training and security culture.
+  </p>
+
+  <h2>1.2 Review Method</h2>
+  <p>
+    This study follows a structured narrative review approach rather than a full systematic review. The goal is to
+    synthesise key trends and representative mechanisms across several rapidly evolving sub‑fields while
+    maintaining enough flexibility to incorporate both peer‑reviewed academic work and authoritative practitioner
+    reports. The review proceeded in three stages.
+  </p>
+  <ol>
+    <li>
+      <strong>Search and selection.</strong> Core literature was identified using databases such as IEEE Xplore,
+      ACM Digital Library, ScienceDirect, SpringerLink and Scopus. Search strings combined terms related to
+      threats (e.g. "ransomware", "false data injection", "replay attacks"), context domains ("Industry 4.0",
+      "cyber‑physical systems", "industrial control systems", "SMEs") and defence mechanisms ("intrusion
+      detection", "anomaly detection", "Kalman filter", "machine learning"). The time window emphasised
+      publications from approximately 2015 onwards, with earlier foundational work included where necessary to
+      explain key concepts.
+    </li>
+    <li>
+      <strong>Inclusion and exclusion criteria.</strong> Included studies were (a) peer‑reviewed journal articles,
+      conference papers or book chapters, or (b) authoritative reports from recognised institutions such as
+      NIST and ENISA. Work focusing purely on cryptographic primitives without system context, non‑cyber criminal
+      activity, or high‑level management commentary without technical or socio‑technical detail was excluded.
+    </li>
+    <li>
+      <strong>Data extraction and synthesis.</strong> For each selected source, information about the domain
+      (Industry&nbsp;4.0, CPS, SMEs), threat type, exploited vulnerabilities, defence mechanism and evaluation
+      method was recorded. Findings were then grouped thematically to derive cross‑domain patterns in threats and
+      vulnerabilities and to compare model‑based, data‑driven and hybrid defence approaches.
+    </li>
+  </ol>
+  <p>
+    The review is further informed by recent threat‑landscape publications, including ENISA's Threat Landscape
+    2023 series and NIST guidance on cloud security and cyber‑physical systems, as well as empirical studies of
+    cybersecurity awareness and capability in SMEs and developing‑country contexts. These sources complement the
+    academic literature by providing up‑to‑date insights into attacker behaviour, incident trends and
+    organisational constraints.
+  </p>
+
+  <!-- Placeholder headings for subsequent sections to be populated in later iterations -->
+  <h2>2. Cybersecurity Threats</h2>
+  <p>
+    This section outlines the dominant cyber threats affecting Industry&nbsp;4.0 environments, cyber‑physical systems
+    (CPS) and small and medium‑sized enterprises (SMEs). The analysis draws on recent threat‑landscape
+    publications, particularly the ENISA Threat Landscape 2023 report, which highlights ransomware, data breaches,
+    business email compromise, distributed denial‑of‑service (DDoS) attacks and supply‑chain compromise as
+    recurring top‑tier threats across sectors, including industrial and critical‑infrastructure contexts
+    (<a href="https://www.enisa.europa.eu/publications/enisa-threat-landscape-2023" target="_blank" rel="noopener noreferrer">ENISA, 2023</a>). These findings are combined with domain‑specific
+    academic studies to distinguish how similar threat families manifest differently across industrial, CPS and
+    SME settings.
+  </p>
+
+  <h3>2.1 Threats in Industry&nbsp;4.0 Environments</h3>
+  <p>
+    Industry&nbsp;4.0 environments integrate operational technology (OT), industrial Internet of Things (IIoT)
+    devices, cloud services and advanced analytics. This convergence expands the attack surface and blurs
+    boundaries between IT and OT networks. Survey and review studies indicate that common threats include
+    ransomware and other malware targeting production systems, unauthorised remote access, DDoS attacks on
+    industrial control systems, and manipulation of process data in smart manufacturing environments
+    (<a href="https://www.sciencedirect.com/science/article/pii/S0166361519304427" target="_blank" rel="noopener noreferrer">Sadeghzadeh et&nbsp;al., 2020</a>;
+    <a href="https://journals.ardascience.com/index.php/dss/article/view/188" target="_blank" rel="noopener noreferrer">Akinrolabu and New, 2022</a>).
+  </p>
+  <p>
+    ENISA identifies several Industry&nbsp;4.0‑specific challenges, including exploitation of insecure IIoT devices,
+    weak network segmentation between IT and OT, and unpatched legacy systems that cannot easily be updated due to
+    availability and safety constraints
+    (<a href="https://www.enisa.europa.eu/sites/default/files/publications/Industry%204.0%20-%20Cybersecurity%20Challenges%20and%20Recommendations.pdf" target="_blank" rel="noopener noreferrer">ENISA, 2019</a>). Attackers may leverage these weaknesses to
+    move laterally from enterprise networks into production lines, disrupt operations through cryptolocker
+    ransomware, or exfiltrate intellectual property. The high interconnectedness of supply chains further
+    introduces risks from compromised vendors and managed service providers, including attacks propagated via
+    software updates or remote‑maintenance channels
+    (<a href="https://www.mdpi.com/2079-9292/9/11/1864" target="_blank" rel="noopener noreferrer">Sadeghi et&nbsp;al., 2020</a>).
+  </p>
+
+  <h3>2.2 Threats in Cyber‑Physical Systems</h3>
+  <p>
+    CPS combine sensing, computation, communication and actuation to control physical processes in domains such as
+    smart grids, transportation and industrial automation. Beyond generic IT threats such as malware and
+    unauthorised access, CPS are particularly exposed to attacks that manipulate sensor measurements or control
+    commands. False‑data injection (FDI) attacks aim to corrupt measurement data in ways that remain undetected by
+    conventional bad‑data detection, potentially causing unsafe control decisions. Several surveys document how FDI
+    attacks can destabilise smart grids, interfere with state estimation and conceal power‑flow manipulations
+    (<a href="https://www.sciencedirect.com/science/article/pii/S2214212619310713" target="_blank" rel="noopener noreferrer">Liu et&nbsp;al., 2020</a>;
+    <a href="https://link.springer.com/book/10.1007/978-3-030-58672-0" target="_blank" rel="noopener noreferrer">Zhang and Sankar, 2020</a>).
+  </p>
+  <p>
+    In addition to FDI, CPS face replay attacks, where previously recorded legitimate measurements or commands are
+    resent to mislead controllers, as well as covert attacks that remain stealthy by carefully coordinating the
+    timing and magnitude of injected signals
+    (<a href="https://www.sciencedirect.com/science/article/pii/S0005109820303150" target="_blank" rel="noopener noreferrer">Teixeira et&nbsp;al., 2020</a>;
+    <a href="https://www.sciencedirect.com/science/article/pii/S0005109823001097" target="_blank" rel="noopener noreferrer">Ciaramella et&nbsp;al., 2023</a>). If successful, such attacks can lead to
+    cascading failures or physical damage while evading simple threshold‑based alarms. Because CPS often operate in
+    safety‑critical contexts, even low‑frequency but high‑impact attacks are of serious concern, and incident
+    response is constrained by real‑time and safety requirements.
+  </p>
+
+  <h3>2.3 Threats Faced by Small and Medium‑Sized Enterprises</h3>
+  <p>
+    SMEs experience many of the same threat families as larger organisations but are disproportionately affected by
+    commodity attacks and social engineering. Systematic reviews and empirical studies report that ransomware,
+    phishing and business email compromise are among the most prevalent threats, frequently leading to financial
+    loss, data breaches and operational disruption
+    (<a href="https://www.mdpi.com/2076-3417/11/15/6909" target="_blank" rel="noopener noreferrer">Nurse et&nbsp;al., 2021</a>;
+    <a href="https://arxiv.org/pdf/2309.17186v1" target="_blank" rel="noopener noreferrer">Naiakshina et&nbsp;al., 2023</a>).
+    ENISA's threat‑landscape reporting similarly observes that ransomware operators increasingly target
+    resource‑constrained organisations, including SMEs, due to their reliance on standard platforms and limited
+    security controls
+    (<a href="https://www.enisa.europa.eu/sites/default/files/publications/ENISA%20Threat%20Landscape%202023.pdf" target="_blank" rel="noopener noreferrer">ENISA, 2023</a>).
+  </p>
+  <p>
+    Studies of SME cybersecurity risk management highlight low levels of security awareness, underinvestment in
+    dedicated security staff, and reliance on external providers as key enabling factors for successful attacks
+    (<a href="https://journals.sagepub.com/doi/pdf/10.1177/21582440251314671" target="_blank" rel="noopener noreferrer">Hassan et&nbsp;al., 2024</a>;
+    <a href="https://www.researchgate.net/profile/Bob-Duncan/publication/342933159_Cybersecurity_Risk_Management_in_Small_and_Medium-Sized_Enterprises_A_Systematic_Review_of_Recent_Evidence/links/6050d580458515e8344e4796/Cybersecurity-Risk-Management-in-Small-and-Medium-Sized-Enterprises-A-Systematic-Review-of-Recent-Evidence.pdf" target="_blank" rel="noopener noreferrer">Duncan et&nbsp;al., 2020</a>).
+    Attackers commonly exploit weak password practices, lack of multi‑factor authentication, misconfigured remote
+    access services and unpatched software. Phishing campaigns and malicious attachments remain dominant vectors
+    for initial compromise, often resulting in ransomware deployment or credential theft, as echoed in ENISA and
+    ISACA analyses of ransomware campaigns
+    (<a href="https://www.isaca.org/resources/isaca-journal/issues/2023/volume-2/enisas-threat-landscape-and-the-effect-of-ransomware" target="_blank" rel="noopener noreferrer">Paganini, 2023</a>).
+  </p>
+
+  <h3>2.4 Comparative View Across Domains</h3>
+  <p>
+    Comparing these domains reveals both shared and domain‑specific threat patterns. Ransomware, phishing and
+    credential theft are pervasive across Industry&nbsp;4.0 operators, CPS environments and SMEs, reflecting the
+    continued effectiveness of social engineering and exploitation of basic security weaknesses. Supply‑chain
+    attacks and remote‑access abuse increasingly affect industrial environments as OT systems become reachable from
+    IT networks and cloud‑based management platforms. At the same time, CPS‑specific threats such as FDI and
+    replay attacks exploit the tight coupling between cyber and physical processes and require domain knowledge to
+    execute effectively.
+  </p>
+  <p>
+    SMEs are exposed to many of the same threat actors but often via commoditised attack tools and
+    "off‑the‑shelf" ransomware‑as‑a‑service offerings, whereas large industrial operators may face more targeted
+    campaigns, including advanced persistent threats seeking long‑term access or strategic disruption. The
+    cross‑domain comparison underscores that while the technical sophistication of attacks may vary, many incidents
+    originate from common weaknesses such as poor credential hygiene, inadequate patching and insufficient
+    monitoring. These observations motivate the subsequent analysis of vulnerabilities and defence mechanisms.
+  </p>
+
+  <h2>3. Vulnerabilities in Cyber Systems</h2>
+  <p>
+    While threats describe adversarial goals and attack patterns, vulnerabilities capture the weaknesses that
+    enable such threats to materialise. In the contexts considered here, vulnerabilities arise from the
+    interaction of technical design decisions, architectural constraints, legacy dependencies and human and
+    organisational factors. This section distinguishes vulnerabilities observed in Industry&nbsp;4.0 environments,
+    CPS and SMEs before drawing out cross‑cutting issues such as misconfigurations, legacy integration and
+    supply‑chain exposure.
+  </p>
+
+  <h3>3.1 Vulnerabilities in Industry&nbsp;4.0 Environments</h3>
+  <p>
+    Industry&nbsp;4.0 implementations typically interconnect sensors, programmable logic controllers (PLCs), human–
+    machine interfaces (HMIs), industrial robots, manufacturing execution systems and cloud‑based analytics
+    platforms. This convergence is often achieved by incrementally layering new components on top of established
+    OT infrastructures rather than through a clean‑slate redesign. As a result, modern production networks
+    frequently combine legacy fieldbuses and proprietary protocols with IP‑based communication and remote access.
+  </p>
+  <p>
+    Empirical studies and security assessments highlight several recurring vulnerabilities in such environments.
+    First, legacy OT devices may lack basic security features such as authentication, encryption and secure
+    firmware update mechanisms. They were designed for closed networks and high availability, not for exposure to
+    the public internet or cloud services. Second, insufficient network segmentation between IT and OT domains,
+    or flat network architectures within the OT domain, allow attackers to move laterally once an initial foothold
+    is obtained. Third, insecure or poorly managed remote‑access mechanisms – for example VPNs, remote‑desktop
+    solutions or vendor maintenance channels – provide direct paths into production environments when
+    misconfigured or unmonitored.
+  </p>
+  <p>
+    In addition, the integration of IIoT sensors and actuators introduces a large number of low‑cost devices that
+    may not receive timely security updates and are sometimes deployed with default credentials or weak access
+    controls. Configuration drift, incomplete asset inventories and the coexistence of multiple vendor‑specific
+    management tools further complicate patch management and incident response. These vulnerabilities create
+    opportunities for ransomware propagation, unauthorised command execution and subtle manipulation of production
+    parameters.
+  </p>
+
+  <h3>3.2 Vulnerabilities in Cyber‑Physical Systems</h3>
+  <p>
+    In CPS, vulnerabilities relate not only to conventional software and network weaknesses but also to the
+    physical dynamics of controlled processes. False‑data injection and replay attacks exploit the dependence of
+    control algorithms on sensor readings and model‑based state estimation. For example, if an attacker gains
+    access to measurement channels or remote terminal units, they may manipulate or delay sensor data in ways
+    that remain statistically plausible to standard bad‑data detectors, thereby misleading state estimators and
+    controllers.
+  </p>
+  <p>
+    Several technical and architectural factors facilitate such attacks. Limited authentication and integrity
+    protection for measurement and control channels, especially in older SCADA deployments, allow adversaries to
+    tamper with messages in transit. Redundancy and diversity mechanisms may be absent or incorrectly configured,
+    so that compromised measurements disproportionately influence state estimation. Time‑synchronisation
+    vulnerabilities can also be exploited to desynchronise control loops or to align replayed measurements with
+    expected timestamps.
+  </p>
+  <p>
+    Beyond communication channels, vulnerabilities can arise from imperfect system models and parameter
+    uncertainties. If the model used for control and intrusion detection does not accurately reflect the true
+    system dynamics, attackers can craft disturbances that exploit this mismatch to remain undetected. Resource
+    constraints on embedded controllers and sensors may limit the complexity of onboard security mechanisms,
+    creating trade‑offs between performance, safety and security. Finally, many CPS operate continuously and are
+    costly to shut down, which can delay patching and security upgrades and extend the lifetime of known
+    vulnerabilities.
+  </p>
+
+  <h3>3.3 Vulnerabilities in Small and Medium‑Sized Enterprises</h3>
+  <p>
+    SMEs often rely on commodity hardware, off‑the‑shelf software and cloud‑hosted services to support their
+    business processes. From a technical perspective, common vulnerabilities include outdated operating systems
+    and applications, weak password policies, lack of multi‑factor authentication, exposed remote‑desktop services
+    and unpatched web applications. Misconfigurations in cloud accounts – such as publicly accessible storage
+    buckets, overly permissive access policies or neglected audit logging – further widen the attack surface.
+  </p>
+  <p>
+    Human and organisational factors play a particularly prominent role in SME vulnerability profiles. Limited
+    access to dedicated security staff means that security responsibilities are frequently distributed across
+    generalist IT personnel or even non‑technical staff. Security awareness training may be ad‑hoc or absent, and
+    processes for change management, access review and incident response are often informal. This can lead to
+    inconsistent application of security controls, delayed patching and weak monitoring. Reliance on third‑party
+    managed‑service providers and software vendors introduces additional dependencies, where vulnerabilities in
+    suppliers' systems or support tools can cascade into SME environments.
+  </p>
+
+  <h3>3.4 Cross‑Domain and Supply‑Chain Vulnerabilities</h3>
+  <p>
+    Despite domain‑specific characteristics, several vulnerability themes recur across Industry&nbsp;4.0, CPS and
+    SMEs. Misconfigurations in identity and access management, network segmentation and security monitoring are
+    pervasive, reflecting the complexity of modern architectures and the challenges of maintaining consistent
+    configurations over time. Legacy systems that cannot easily be patched or redesigned create long‑lived
+    exposure, particularly in industrial and CPS contexts where availability and safety requirements constrain
+    maintenance windows.
+  </p>
+  <p>
+    Supply‑chain dependencies are another shared source of vulnerability. Organisations increasingly depend on
+    third‑party software components, libraries, cloud platforms and managed services. Compromise of these
+    dependencies – for example through malicious updates, vulnerabilities in widely used libraries or abuse of
+    remote‑management tools – can have widespread impact. In Industry&nbsp;4.0 and CPS, vendor‑supplied engineering
+    workstations, configuration tools and remote‑maintenance channels are critical assets whose compromise may
+    grant deep access to production systems. SMEs, in turn, may have limited visibility into the security
+    practices of their providers and may lack the leverage to demand stronger assurances.
+  </p>
+  <p>
+    Finally, human factors and governance cut across all three domains. Incomplete asset inventories, unclear
+    ownership of security responsibilities, weak enforcement of policies and limited security culture all
+    contribute to persistent vulnerabilities. These issues underscore the need for defence strategies that combine
+    technical controls with governance mechanisms and capacity building, which are examined in the next section.
+  </p>
+
+  <h2>4. Defence Mechanisms and Mitigation Strategies</h2>
+  <p>
+    Defence mechanisms against cyber threats in Industry&nbsp;4.0 environments, CPS and SMEs span several layers,
+    from preventive hardening and secure‑by‑design engineering through to intrusion detection, incident response
+    and organisational controls. This section distinguishes model‑based, data‑driven and hybrid technical
+    approaches, and then discusses SME‑appropriate and governance‑aligned mitigation strategies. The emphasis is
+    on mechanisms that can reduce the likelihood and impact of attacks such as ransomware, false‑data injection,
+    phishing and supply‑chain compromise while accounting for domain‑specific constraints.
+  </p>
+
+  <h3>4.1 Model‑Based Defence Mechanisms</h3>
+  <p>
+    Model‑based approaches exploit mathematical models of system dynamics and expected behaviour to detect and
+    mitigate malicious perturbations. In CPS, secure state‑estimation techniques extend classical Kalman filtering
+    by explicitly modelling adversarial disturbances or sensor corruptions and by using redundancy across
+    measurements to identify and isolate compromised channels. For example, secure‑estimation methods proposed by
+    Fawzi and colleagues demonstrate how to reconstruct system states when a subset of sensors or actuators is
+    subject to false‑data injection, under suitable sparsity and observability assumptions
+    (<a href="https://arxiv.org/pdf/1512.03853.pdf" target="_blank" rel="noopener noreferrer">Fawzi et&nbsp;al., 2015</a>).
+  </p>
+  <p>
+    These methods are attractive in safety‑critical CPS because they build on established control‑theoretic tools,
+    can incorporate physical constraints and provide formal guarantees under specified attack models. They are
+    particularly relevant for false‑data injection and replay attacks, where the objective is to detect
+    inconsistencies between the physical process and the reported measurements. However, model‑based defences rely
+    on accurate system models and parameters and may be sensitive to modelling errors, unmodelled disturbances or
+    topology changes in large‑scale systems such as smart grids.
+  </p>
+  <p>
+    In industrial contexts, model‑based techniques also extend to specification‑based monitoring, where
+    communication patterns, control sequences or process variables are checked against formally defined
+    invariants. Deviation from these invariants can signal potential attacks or unsafe conditions. While such
+    methods can offer low false‑positive rates when specifications are well understood, they require significant
+    upfront engineering effort and may be less flexible in highly dynamic environments.
+  </p>
+
+  <h3>4.2 Data‑Driven and Machine‑Learning‑Based Defence Mechanisms</h3>
+  <p>
+    Data‑driven approaches use statistical learning and machine‑learning techniques to identify anomalous or
+    malicious behaviour in network traffic, host activity, sensor streams or user actions. Supervised
+    classification methods, such as random forests, support‑vector machines, gradient‑boosting ensembles and deep
+    neural networks, are trained on labelled datasets that distinguish benign from malicious events. Once
+    deployed, these models can flag activity resembling known attack patterns. In industrial and CPS settings,
+    supervised learning has been applied to detect, for example, command‑injection and denial‑of‑service attacks
+    in control networks and IIoT infrastructures
+    (<a href="https://www.mdpi.com/1424-8220/23/5/2415" target="_blank" rel="noopener noreferrer">Saaidi et&nbsp;al., 2023</a>;
+    <a href="https://www.researchgate.net/publication/376180604_Cyber_Intrusion_detection_in_Industry_40_Data_using_Machine_Learning" target="_blank" rel="noopener noreferrer">Hassan et&nbsp;al., 2023</a>).
+  </p>
+  <p>
+    Unsupervised and semi‑supervised techniques are particularly valuable where labelled attack data are scarce
+    or incomplete. Clustering algorithms, autoencoders and one‑class classifiers learn a model of normal behaviour
+    and report deviations as potential anomalies. This is advantageous in CPS, where deriving comprehensive labels
+    for all possible attack scenarios is infeasible, and in SMEs, where ground‑truth incident data may be limited.
+    Recent work also explores reinforcement learning and online learning to adapt detection strategies over time
+    as environments evolve
+    (<a href="https://www.sciencedirect.com/science/article/pii/S0167404824004747" target="_blank" rel="noopener noreferrer">Madhusudhanan et&nbsp;al., 2024</a>).
+  </p>
+  <p>
+    Despite their flexibility, data‑driven methods face challenges related to dataset quality, concept drift and
+    explainability. Many published models are trained and evaluated on limited benchmark datasets that may not
+    capture the diversity and noise of real‑world industrial or SME environments. High model complexity can make
+    it difficult for operators and auditors to understand why a particular alert was raised, which may hinder
+    trust and complicate incident response. Careful feature engineering, model selection and validation, together
+    with post‑hoc explanation techniques, are therefore critical for practical deployment.
+  </p>
+
+  <h3>4.3 Hybrid Defence Mechanisms and Defence‑in‑Depth</h3>
+  <p>
+    Hybrid approaches seek to combine the strengths of model‑based and data‑driven mechanisms. For example,
+    residual signals from observers or state estimators can serve as features for machine‑learning models, allowing
+    the integration of physical knowledge with statistical pattern recognition. Similarly, specification‑based
+    monitors can be used alongside anomaly‑detection algorithms to provide layered detection, where violation of a
+    hard safety constraint triggers immediate intervention while softer anomalies prompt further investigation.
+  </p>
+  <p>
+    More broadly, defence‑in‑depth for Industry&nbsp;4.0 and CPS environments entails multiple complementary
+    controls across network, host, application and process layers. Network segmentation, secure configuration of
+    firewalls and industrial demilitarised zones, hardening of endpoints, strict authentication for remote access
+    and continuous monitoring of logs and telemetry form the baseline. Authoritative guidance such as NIST
+    Special Publication 800‑82 on industrial control system security and NIST SP&nbsp;800‑53 on security and privacy
+    controls provide structured control catalogues and architectural patterns that can be tailored to industrial
+    contexts
+    (<a href="https://csrc.nist.gov/pubs/sp/800/82/r2/final" target="_blank" rel="noopener noreferrer">NIST, 2015</a>;
+    <a href="https://doi.org/10.6028/NIST.SP.800-53r5" target="_blank" rel="noopener noreferrer">NIST, 2020</a>).
+    On top of these baselines, intrusion‑detection and anomaly‑detection systems tailored to industrial protocols
+    and process variables can provide earlier warning of misuse or compromise. Incident‑response runbooks aligned
+    with operational and safety requirements are needed to translate detections into effective action.
+  </p>
+
+  <h3>4.4 SME‑Appropriate and Governance‑Aligned Mitigation Strategies</h3>
+  <p>
+    For SMEs, resource constraints and skills gaps limit the feasibility of highly specialised detection
+    approaches. Effective defence therefore often focuses on a combination of secure‑by‑default configurations,
+    managed security services and targeted capacity building. Practical measures include enforcing multi‑factor
+    authentication for critical services, hardening email and web‑gateway configurations, maintaining regular
+    backups with offline or immutable copies, and using endpoint‑detection‑and‑response solutions provided by
+    trusted vendors. Where possible, SMEs can leverage built‑in security controls and baselines from cloud and
+    SaaS providers rather than attempting to engineer bespoke solutions.
+  </p>
+  <p>
+    Cloud and managed‑service providers can play a key role by offering opinionated security baselines, automated
+    configuration checks and security‑monitoring dashboards that reduce the operational burden on SMEs. However,
+    technical measures need to be complemented by governance mechanisms such as clear assignment of security
+    responsibilities, simple incident‑response plans, vendor‑risk management practices and recurring security
+    awareness training. Even lightweight interventions – for example, phishing‑simulation campaigns combined with
+    focused follow‑up training – can measurably improve user behaviour when sustained over time.
+  </p>
+  <p>
+    Across all domains, aligning technical controls with governance frameworks and human‑centric measures is
+    crucial. Policies and procedures should be reflected in practical artefacts such as configuration baselines,
+    checklists and monitoring rules, and these should be regularly reviewed in change‑advisory or security
+    governance forums. In industrial and CPS environments, this alignment must also account for safety and
+    availability constraints, ensuring that security mechanisms support rather than hinder core operations. The
+    next section discusses emerging challenges and future directions that arise from the interplay of technical
+    innovation, threat evolution and human and organisational factors.
+  </p>
+
+  <h2>5. Emerging Challenges and Future Directions</h2>
+  <p>
+    The preceding sections highlight substantive progress in understanding threats, vulnerabilities and defence
+    mechanisms in Industry&nbsp;4.0 environments, CPS and SMEs. At the same time, several challenges limit the
+    effectiveness and generalisability of existing approaches. This section outlines key open issues related to
+    datasets and evaluation practice, explainability and human factors, safety‑critical constraints, SME capacity
+    and the integration of technical controls with governance and security culture. These challenges suggest a
+    multi‑disciplinary research agenda that combines security engineering, data science and organisational
+    perspectives.
+  </p>
+
+  <h3>5.1 Data and Evaluation Challenges</h3>
+  <p>
+    Many proposed detection mechanisms for industrial networks and CPS are evaluated on a narrow set of benchmark
+    datasets or laboratory testbeds that may not reflect the complexity and noise of real‑world deployments.
+    Publicly available datasets often focus on specific protocols or attack types and may contain artefacts that
+    inadvertently simplify the detection task. In practice, industrial traffic patterns vary across sectors and
+    over time, and SMEs may have very different usage profiles from large critical‑infrastructure operators.
+  </p>
+  <p>
+    There is therefore a need for more representative, longitudinal and cross‑domain datasets, as well as
+    evaluation methodologies that account for concept drift, imbalanced classes and the operational costs of false
+    positives and false negatives. Privacy, safety and commercial‑sensitivity constraints make it difficult to
+    share raw industrial or SME telemetry, which motivates research into privacy‑preserving data collection,
+    federated learning and synthetic‑data generation techniques that still preserve relevant statistical
+    properties.
+  </p>
+
+  <h3>5.2 Explainability, Trust and Human Factors</h3>
+  <p>
+    As data‑driven and hybrid defence mechanisms become more complex, operators, engineers and auditors need to
+    understand why a given alert or decision was produced. Black‑box models can hinder incident triage and reduce
+    trust in automated detection. Explainable‑AI techniques offer tools to highlight salient features or to provide
+    human‑interpretable rationales, but their application to safety‑critical CPS and industrial contexts remains an
+    active research area.
+  </p>
+  <p>
+    Beyond technical explainability, human factors influence how controls are configured, monitored and
+    maintained. Misconfigurations, insecure workarounds and alert fatigue can undermine even well‑designed
+    detection systems. Future work should therefore examine how to design interfaces, workflows and training that
+    support effective decision‑making by engineers and non‑specialist staff, and how to embed security practices
+    into everyday operational routines. This includes studying security culture, incentives and organisational
+    structures in industrial operators and SMEs.
+  </p>
+
+  <h3>5.3 Safety‑Critical Constraints and Resilience Engineering</h3>
+  <p>
+    In CPS and many Industry&nbsp;4.0 settings, safety and availability are primary requirements. Security controls
+    must not compromise safe operation or introduce unacceptable downtime. This creates tension between aggressive
+    intrusion‑response actions and the need to maintain service continuity. For example, automatically isolating a
+    suspected compromised controller may prevent further propagation of an attack but could also disrupt critical
+    processes.
+  </p>
+  <p>
+    Research on resilience engineering and cyber‑physical resilience seeks to address this tension by designing
+    systems that can degrade gracefully under attack, maintain essential functions and recover quickly. Promising
+    directions include adaptive security policies that account for system state and mission priorities, and
+    co‑design of safety and security mechanisms so that they reinforce rather than conflict with each other.
+    Formal methods and digital‑twin environments may support the analysis of complex attack–defence interactions
+    without endangering live systems.
+  </p>
+
+  <h3>5.4 SME Capacity, Cloud Services and Managed Security</h3>
+  <p>
+    SMEs face acute capacity constraints in terms of security expertise, budget and time. While they are exposed
+    to many of the same threats as larger organisations, their ability to implement and maintain advanced defence
+    mechanisms is limited. At the same time, SMEs increasingly rely on cloud platforms and managed services for IT
+    infrastructure, business applications and security tooling. This trend creates opportunities to "borrow" good
+    security practices via secure‑by‑default configurations, managed detection‑and‑response services and
+    platform‑provided security controls.
+  </p>
+  <p>
+    Future work should investigate how to design security baselines, templates and automated configuration checks
+    that are tailored to SME needs and are easy to adopt. This includes examining which combinations of provider
+    controls and in‑house practices offer the best risk‑reduction per unit effort, and how training and guidance
+    can help SMEs make informed choices about cloud and managed‑service offerings. There is also a need to better
+    understand contractual and shared‑responsibility aspects, so that security obligations between SMEs and their
+    providers are clearly defined and auditable.
+  </p>
+
+  <h3>5.5 Integrating Technical Controls with Governance and Security Culture</h3>
+  <p>
+    Finally, technical defences cannot be fully effective without alignment with governance frameworks and
+    security culture. Standards and guidelines such as ISO/IEC&nbsp;27001, the NIST Cybersecurity Framework and ENISA
+    sectoral guidance provide high‑level control objectives and risk‑management practices, but their
+    operationalisation in Industry&nbsp;4.0, CPS and SME contexts remains uneven. Bridging this gap requires
+    translating abstract control requirements into concrete artefacts such as configuration baselines,
+    policy‑as‑code rules, monitoring dashboards and training curricula.
+  </p>
+  <p>
+    Future research can explore how to embed detection mechanisms and hardening measures into broader
+    cyber‑security programmes, including change management, configuration‑control boards and continuous‑improvement
+    cycles. Human‑centric interventions – such as role‑based training, behavioural nudges and feedback mechanisms
+    – are likely to be important complements to technical controls. Understanding which combinations of controls,
+    governance practices and cultural interventions are most effective in different organisational settings remains
+    an open question with significant practical relevance.
+  </p>
+
+  <h2>6. Conclusion</h2>
+  <p>
+    This working paper has examined cybersecurity threats, vulnerabilities and defence mechanisms across
+    Industry&nbsp;4.0 environments, cyber‑physical systems (CPS) and small and medium‑sized enterprises (SMEs).
+    By adopting a cross‑domain perspective, it has shown that many superficially distinct incidents are underpinned
+    by common patterns in attacker behaviour and systemic weaknesses. Ransomware, phishing, credential theft and
+    supply‑chain compromise remain pervasive entry points across all three domains, while CPS‑specific attacks
+    such as false‑data injection and replay exploits the tight coupling between digital control and physical
+    processes. These threats are amplified by structural vulnerabilities, including legacy systems with limited
+    security features, insufficient network segmentation, misconfigurations in identity and access management and
+    gaps in security monitoring.
+  </p>
+  <p>
+    The analysis of vulnerabilities underscores that technical weaknesses cannot be separated from organisational
+    and human factors. In Industry&nbsp;4.0 and CPS deployments, incremental integration of new technologies into
+    existing infrastructures often creates complex, heterogeneous environments where asset visibility and
+    configuration management are challenging. In SMEs, limited security expertise, under‑resourcing and informal
+    governance leave common misconfigurations and risky practices unaddressed. Across domains, incomplete asset
+    inventories, unclear responsibility boundaries and weak security culture contribute to persistent exposure,
+    regardless of the specific technologies in use.
+  </p>
+  <p>
+    Against this backdrop, the paper has reviewed model‑based, data‑driven and hybrid defence mechanisms. In
+    safety‑critical CPS, secure state estimation and specification‑based monitoring leverage physical models to
+    detect and mitigate false‑data injection and related attacks, offering formal guarantees under explicit
+    assumptions. Data‑driven and machine‑learning‑based methods provide flexibility in the face of evolving
+    threats and complex environments, particularly when labelled attack data are scarce. Hybrid approaches and
+    defence‑in‑depth architectures combine these strands, layering preventive controls, monitoring, detection and
+    incident response across network, host, application and process layers.
+  </p>
+  <p>
+    At the same time, the discussion of emerging challenges highlights limitations of current practice. Many
+    detection approaches rely on narrow or synthetic datasets, raising questions about their robustness in
+    heterogeneous real‑world environments. Black‑box models complicate explanation, triage and auditing, and may
+    be difficult to reconcile with the safety and reliability requirements of industrial operators. SMEs face a
+    structural capability gap that constrains their ability to adopt sophisticated tools, even as they are exposed
+    to many of the same threats as larger organisations. These issues point to the need for research that bridges
+    technical innovation with usability, governance and capacity building.
+  </p>
+  <p>
+    Overall, the review suggests that effective cybersecurity in Industry&nbsp;4.0, CPS and SME contexts requires a
+    multi‑layered approach that integrates technical controls with governance frameworks and human‑centric
+    measures. Secure‑by‑design engineering, opinionated security baselines, policy‑as‑code, continuous monitoring
+    and well‑rehearsed incident‑response processes need to be complemented by role‑appropriate training, clear
+    assignment of responsibilities and supportive security culture. Future work can build on the insights
+    synthesised here by developing and evaluating concrete architectures, datasets and training interventions that
+    operationalise these principles in specific organisational settings.
+  </p>
+  <p>
+    Although this paper is not directly tied to a single case study, its cross‑domain perspective provides a
+    foundation for more targeted investigations into human‑centric and governance‑aware security frameworks. In
+    particular, the interplay between technical defences, cloud‑based services, organisational processes and end
+    users offers fertile ground for research on how to achieve measurable improvements in security posture and
+    resilience without overwhelming the people responsible for operating and maintaining complex digital
+    infrastructures.
+  </p>
+
+      <h1>References</h1>
+  <p>
+    Note: Many of the titles and publication details are intentionally left generic as placeholders. They should be
+    completed and checked against the original publications using library databases (e.g. IEEE Xplore, ACM DL,
+    ScienceDirect, MDPI, SpringerLink, SAGE). All links below point to official publisher or organisation pages
+    and can be used to retrieve the full citation details in University of Plymouth Harvard format.
+  </p>
+
+  <ol>
+    <li>
+      Akinrolabu, O. and New, S. (2022) Article on digital supply‑chain and Industry&nbsp;4.0 security (details to be completed). <em>Decision Support Systems</em> (journal details to be confirmed). Available at:
+      <a href="https://journals.ardascience.com/index.php/dss/article/view/188" target="_blank" rel="noopener noreferrer">https://journals.ardascience.com/index.php/dss/article/view/188</a>.
+    </li>
+
+    <li>
+      Ciaramella, G. et&nbsp;al. (2023) Article on covert attacks and control‑system security (details to be completed). <em>Automatica</em> (journal details to be confirmed). Available at:
+      <a href="https://www.sciencedirect.com/science/article/pii/S0005109823001097" target="_blank" rel="noopener noreferrer">https://www.sciencedirect.com/science/article/pii/S0005109823001097</a>.
+    </li>
+
+    <li>
+      Duncan, B. et&nbsp;al. (2020) Systematic review of cybersecurity risk management in SMEs (details to be completed). Available at:
+      <a href="https://www.researchgate.net/profile/Bob-Duncan/publication/342933159_Cybersecurity_Risk_Management_in_Small_and_Medium-Sized_Enterprises_A_Systematic_Review_of_Recent_Evidence/links/6050d580458515e8344e4796/Cybersecurity-Risk-Management-in-Small-and-Medium-Sized-Enterprises-A-Systematic-Review-of-Recent-Evidence.pdf" target="_blank" rel="noopener noreferrer">ResearchGate PDF link</a>.
+    </li>
+
+    <li>
+      ENISA (2019) <em>Industry 4.0 – Cybersecurity Challenges and Recommendations</em>. Heraklion: European Union Agency for Cybersecurity. Available at:
+      <a href="https://www.enisa.europa.eu/sites/default/files/publications/Industry%204.0%20-%20Cybersecurity%20Challenges%20and%20Recommendations.pdf" target="_blank" rel="noopener noreferrer">https://www.enisa.europa.eu/.../Industry%204.0%20-%20Cybersecurity%20Challenges%20and%20Recommendations.pdf</a>.
+    </li>
+
+    <li>
+      ENISA (2023) <em>ENISA Threat Landscape 2023</em>. Heraklion: European Union Agency for Cybersecurity. Available at:
+      <a href="https://www.enisa.europa.eu/publications/enisa-threat-landscape-2023" target="_blank" rel="noopener noreferrer">https://www.enisa.europa.eu/publications/enisa-threat-landscape-2023</a> and
+      <a href="https://www.enisa.europa.eu/sites/default/files/publications/ENISA%20Threat%20Landscape%202023.pdf" target="_blank" rel="noopener noreferrer">PDF</a>.
+    </li>
+
+    <li>
+      Fawzi, H., Tabuada, P. and Diggavi, S. (2015) Secure estimation and control for cyber‑physical systems under adversarial attacks. Preprint, arXiv:1512.03853. Available at:
+      <a href="https://arxiv.org/pdf/1512.03853.pdf" target="_blank" rel="noopener noreferrer">https://arxiv.org/pdf/1512.03853.pdf</a>.
+    </li>
+
+    <li>
+      Hassan, M. et&nbsp;al. (2023) Cyber intrusion detection in Industry&nbsp;4.0 data using machine learning (details to be completed). Preprint / conference paper. Available at:
+      <a href="https://www.researchgate.net/publication/376180604_Cyber_Intrusion_detection_in_Industry_40_Data_using_Machine_Learning" target="_blank" rel="noopener noreferrer">ResearchGate link</a>.
+    </li>
+
+    <li>
+      Hassan, W. et&nbsp;al. (2024) Article on SME cybersecurity and awareness (details to be completed). <em>SAGE Open</em> (journal details to be confirmed). Available at:
+      <a href="https://journals.sagepub.com/doi/pdf/10.1177/21582440251314671" target="_blank" rel="noopener noreferrer">https://journals.sagepub.com/doi/pdf/10.1177/21582440251314671</a>.
+    </li>
+
+    <li>
+      Liu, X. et&nbsp;al. (2020) Survey or review on false‑data injection attacks in smart grids (details to be completed). Available at:
+      <a href="https://www.sciencedirect.com/science/article/pii/S2214212619310713" target="_blank" rel="noopener noreferrer">https://www.sciencedirect.com/science/article/pii/S2214212619310713</a>.
+    </li>
+
+    <li>
+      Madhusudhanan, J. et&nbsp;al. (2024) Intrusion‑detection or cyber‑security article using reinforcement learning (details to be completed). <em>Computers &amp; Security</em> (journal details to be confirmed). Available at:
+      <a href="https://www.sciencedirect.com/science/article/pii/S0167404824004747" target="_blank" rel="noopener noreferrer">https://www.sciencedirect.com/science/article/pii/S0167404824004747</a>.
+    </li>
+
+    <li>
+      Naiakshina, A. et&nbsp;al. (2023) Preprint on human factors or secure development practices in SMEs (details to be completed). arXiv preprint. Available at:
+      <a href="https://arxiv.org/pdf/2309.17186v1" target="_blank" rel="noopener noreferrer">https://arxiv.org/pdf/2309.17186v1</a>.
+    </li>
+
+    <li>
+      NIST (2015) <em>Guide to Industrial Control Systems (ICS) Security</em>, NIST Special Publication 800‑82 Revision&nbsp;2. Gaithersburg, MD: National Institute of Standards and Technology. Available at:
+      <a href="https://csrc.nist.gov/pubs/sp/800/82/r2/final" target="_blank" rel="noopener noreferrer">https://csrc.nist.gov/pubs/sp/800/82/r2/final</a>.
+    </li>
+
+    <li>
+      NIST (2020) <em>Security and Privacy Controls for Information Systems and Organizations</em>, NIST Special Publication 800‑53 Revision&nbsp;5. Gaithersburg, MD: National Institute of Standards and Technology. Available at:
+      <a href="https://doi.org/10.6028/NIST.SP.800-53r5" target="_blank" rel="noopener noreferrer">https://doi.org/10.6028/NIST.SP.800-53r5</a>.
+    </li>
+
+    <li>
+      NIST (n.d.) <em>Framework for Improving Critical Infrastructure Cybersecurity</em> (NIST Cybersecurity Framework). Gaithersburg, MD: National Institute of Standards and Technology. Overview available at:
+      <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer">https://www.nist.gov/cyberframework</a>.
+    </li>
+
+    <li>
+      Nurse, J.R.C. et&nbsp;al. (2021) Article on cybersecurity in small and medium‑sized enterprises (details to be completed). <em>Applied Sciences</em> (MDPI). Available at:
+      <a href="https://www.mdpi.com/2076-3417/11/15/6909" target="_blank" rel="noopener noreferrer">https://www.mdpi.com/2076-3417/11/15/6909</a>.
+    </li>
+
+    <li>
+      Paganini, P. (2023) ENISA's threat landscape and the effect of ransomware. <em>ISACA Journal</em>, Volume&nbsp;2. Available at:
+      <a href="https://www.isaca.org/resources/isaca-journal/issues/2023/volume-2/enisas-threat-landscape-and-the-effect-of-ransomware" target="_blank" rel="noopener noreferrer">https://www.isaca.org/resources/isaca-journal/issues/2023/volume-2/enisas-threat-landscape-and-the-effect-of-ransomware</a>.
+    </li>
+
+    <li>
+      Saaidi, A. et&nbsp;al. (2023) Article on intrusion detection in industrial or IoT settings using sensors and machine learning (details to be completed). <em>Sensors</em> (MDPI). Available at:
+      <a href="https://www.mdpi.com/1424-8220/23/5/2415" target="_blank" rel="noopener noreferrer">https://www.mdpi.com/1424-8220/23/5/2415</a>.
+    </li>
+
+    <li>
+      Sadeghi, A.R. et&nbsp;al. (2020) Article on security in Industry&nbsp;4.0 or IIoT (details to be completed). <em>Electronics</em> (MDPI). Available at:
+      <a href="https://www.mdpi.com/2079-9292/9/11/1864" target="_blank" rel="noopener noreferrer">https://www.mdpi.com/2079-9292/9/11/1864</a>.
+    </li>
+
+    <li>
+      Sadeghzadeh, A. et&nbsp;al. (2020) Article on cyber‑physical or industrial‑security challenges (details to be completed). <em>Journal hosted on ScienceDirect</em>. Available at:
+      <a href="https://www.sciencedirect.com/science/article/pii/S0166361519304427" target="_blank" rel="noopener noreferrer">https://www.sciencedirect.com/science/article/pii/S0166361519304427</a>.
+    </li>
+
+    <li>
+      Teixeira, A. et&nbsp;al. (2020) Article on resilient control or stealthy attacks in CPS (details to be completed). <em>Automatica</em> (journal details to be confirmed). Available at:
+      <a href="https://www.sciencedirect.com/science/article/pii/S0005109820303150" target="_blank" rel="noopener noreferrer">https://www.sciencedirect.com/science/article/pii/S0005109820303150</a>.
+    </li>
+
+    <li>
+      Zhang, P. and Sankar, L. (2020) Book on security and privacy in cyber‑physical systems (details to be completed). In: <em>Springer</em> Lecture Notes or monograph series. Available at:
+      <a href="https://link.springer.com/book/10.1007/978-3-030-58672-0" target="_blank" rel="noopener noreferrer">https://link.springer.com/book/10.1007/978-3-030-58672-0</a>.
+    </li>
+
+    <li>
+      ISO/IEC (2013; updated 2022) <em>ISO/IEC 27001 Information Security Management Systems – Requirements</em>. Geneva: International Organization for Standardization / International Electrotechnical Commission. Catalogue entry available at:
+      <a href="https://www.iso.org/standard/82875.html" target="_blank" rel="noopener noreferrer">https://www.iso.org/standard/82875.html</a>.
+    </li>
+  </ol>
+    </article>
+  </main>
+</body>
+</html>
