@@ -24,6 +24,7 @@ plugins:
 - bibtex:
     bib_file: docs/references/library.bib
 - git-revision-date-localized
+- glightbox
 - minify:
     minify_html: true
 nav:
